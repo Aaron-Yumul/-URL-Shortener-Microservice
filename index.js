@@ -73,6 +73,13 @@ app.get('/api/shorturl/:short_url', async (req, res) => {
   }
 });
 
+app.get('/api/status', (req, res) => {
+  res.json({
+    hasUri: !!process.env.MONGO_URI,
+    dbState: mongoose.connection.readyState
+  });
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
